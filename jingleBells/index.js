@@ -14,8 +14,15 @@ NodeMCU.D3.mode("input");
 /* stop from when we save */
 E.on("init", function()
 {
+	/* turn on LEDs */
+	musicLeds.allOn();
+
 	/* connect wifi */
 	connectWifi(() => {
+
+		/* LEDs turn off wifi has been conected */
+		musicLeds.allOff();
+
 		setTimeout(() => {
 			/* set irqs */
 			setWatch(() => {
@@ -27,6 +34,6 @@ E.on("init", function()
 			}, NodeMCU.D3, { repeat: true });
 		}, 500);
 	});
+
 	music.stop();
-	music_leds.allOff();
 });
