@@ -30,6 +30,17 @@ function MusicLeds (group1, group2)
 		this.groupOff(group2);
 	};
 
+	this.allOn = function() 
+	{
+		this.groupOn(group1);
+		this.groupOn(group2);
+	};
+
+	this.setLightLim = function(opt) 
+	{
+		lightLim = opt;
+	};
+
 	this.checkChange = function()
 	{
 		if(change) {

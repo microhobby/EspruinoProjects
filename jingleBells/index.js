@@ -15,12 +15,14 @@ NodeMCU.D3.mode("input");
 E.on("init", function()
 {
 	/* turn on LEDs */
+	musicLeds.setLightLim(1);
 	musicLeds.allOn();
 
 	/* connect wifi */
 	connectWifi(() => {
 
 		/* LEDs turn off wifi has been conected */
+		musicLeds.setLightLim(0);
 		musicLeds.allOff();
 
 		setTimeout(() => {
