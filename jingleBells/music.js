@@ -51,6 +51,7 @@ function Music(buzzer_pin)
 			if (music_leds != null)
 				music_leds.allOff();
 			
+			freq(0);
 			clearInterval(intervalId);
 			intervalId = 0;
 
@@ -85,17 +86,13 @@ function Music(buzzer_pin)
 
 	this.stop = function()
 	{
-		pos = tune.length -1;
+		pos = tune.length;
 		isPlaying = false;
-		if (intervalId > 0) {
-			clearInterval(intervalId);
-			intervalId = 0;
-		}
 	};
 
 	this.setTime = function(tm) 
 	{
-		time = tm;		
+		time = tm;	
 	};
 
 	this.setTune = function(tn)
