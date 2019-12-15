@@ -53,7 +53,7 @@ $content = [IO.File]::ReadAllText($pathfile)
 $charWrite = 0
 $charCount = $content.Length
 
-Write-Host -NoNewLine '⏲ Writing .'
+Write-Host -NoNewLine '🔥 Writing .'
 
 for ($i=0; $i -lt $charCount; $i++) {
     if (($content[$i] -ne "`n") -and ($content[$i] -ne "`t") -and ($content[$i] -ne "`r")) {
@@ -66,17 +66,18 @@ for ($i=0; $i -lt $charCount; $i++) {
     }
     Write-Host -NoNewLine '.'
 }
-Write-Host ''
-Write-Host '👌 Done'
+
+Write-Host (" ")
+Write-Host ("👌 Done")
 
 # ask espruino to save
-$port.WriteLine(' ')
-$port.WriteLine('save();')
+$port.WriteLine(" ")
+$port.WriteLine("save();")
 
 # sanity
 Start-Sleep -Milliseconds 1000
-$port.WriteLine('load();')
+$port.WriteLine("load();")
 
 # all done close connection
 $port.Close()
-Write-Host '😎 Closed '$comport
+Write-Host ("😎 Closed " + $comport)
