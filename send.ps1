@@ -1,12 +1,16 @@
 #clean up
-rm index.js
+try {
+    rm index.js
+} catch {
+    Write-Warning 'No index.js file to remove, cleanup skip'
+}
 
 # args
 $projectPath = $args[1];
 $comport = $args[0]
 
 if ($projectPath -eq $null -or $comport -eq $null) {
-    throw [System.ArgumentException] "use: .\send.ps1 COM4 ./blink/"
+    throw [System.ArgumentException] 'use: .\send.ps1 COM4 ./blink/'
 }
 
 # first put all js together
@@ -17,22 +21,23 @@ Get-ChildItem -Path $projectPath -Filter *.js -Recurse -File -Name| ForEach-Obje
 }
 
 # Open and configure the serial port
-Write-Host "Try to connect to $comport"
+Write-Host '🤔 Try to connect to '$comport
 
 $port = New-Object System.IO.Ports.SerialPort $comport, 115200, none, 8, one
 $port.DTREnable = $True
 $port.Open()
-Write-Host "Connected to $comport"
+Write-Host '😀 Connected to '$comport
 
 # write the file content to the espruino
-$port.WriteLine("reset();")
+$port.WriteLine('reset();')
 Start-Sleep -Milliseconds 500
-$content = [IO.File]::ReadAllText(".\index.js")
+$pathfile = $PSScriptRoot + '\index.js'
+$content = [IO.File]::ReadAllText($pathfile)
 $port.WriteLine($content)
 
 # ask espruino to save
-$port.WriteLine("save();")
+$port.WriteLine('save();')
 
 # all done close connection
 $port.Close()
-Write-Host "Closed $comport"
+Write-Host '😎 Closed '$comport
