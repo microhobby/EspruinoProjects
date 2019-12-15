@@ -1,4 +1,7 @@
 
+/* SET YOUR TELEGRAM ID */
+var telegramID = 0;
+
 /* initialize music */
 var music = new Music(NodeMCU.D2);
 var noses = [NodeMCU.D8, NodeMCU.D4, NodeMCU.D1];
@@ -31,7 +34,7 @@ E.on("init", function()
 				/* we have all 3 sensors in the same input */
 				if (!music.isPlaying()) {
 					music.play();
-					steppedHere();
+					steppedHere(telegramID);
 				}
 			}, NodeMCU.D3, { repeat: true });
 		}, 500);

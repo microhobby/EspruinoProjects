@@ -12,12 +12,13 @@ function connectWifi(onConnect)
 	});
 }
 
-function steppedHere()
+function steppedHere(id)
 {
 	var http = require("http");
-	
+	var url = "https://microhobby.com.br/safira2/tapete.php?id=" + id;
+
 	/* send the flag */
-	http.get("https://yourdomain.com/youservice/", 
+	http.get(url, 
 		function(res) {
 			res.on('data', function(data)
 			{
