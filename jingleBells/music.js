@@ -8,7 +8,6 @@ function Music(buzzer_pin)
 		'c':261.63,
 		'd':293.66,
 		'e':329.63,
-		//'f':349.23,
 		'f':369.99,
 		'g':392.00,
 		'A':440.00,
@@ -16,7 +15,6 @@ function Music(buzzer_pin)
 		'C':523.25,
 		'D':587.33,
 		'E':659.26,
-		//'F':698.46,
 		'F':739.99,
 		'G':783.99
 	};
@@ -68,7 +66,7 @@ function Music(buzzer_pin)
 				music_leds.checkChange();
 		}
 		else  {
-			freq(0); // off
+			freq(0);
 			
 			if (music_leds != null)
 				music_leds.allOff();
