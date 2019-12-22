@@ -40,7 +40,7 @@ else
 fi
 
 echo '🤔  Try to connect '$1
-espruino -q -p $1 -b 115200 -e "console.log(1)"
+espruino -q -p $1 -b 115200 --no-ble -e "console.log(1)"
 
 if [ $? -gt 0 ] ; then
 	echo '🤷‍♂️  Error trying to connect to '$1
@@ -51,7 +51,7 @@ echo '👌  Done'
 
 echo '🔥  Writing'
 # for esp8266
-espruino -q -p $1 -b 115200 index.js -e "save()"
+espruino -q -p $1 -b 115200 --no-ble index.js -e "save()"
 
 if [ $? -gt 0 ] ; then
 	echo '🤷‍♂️  Error trying to upload to Espruino on '$1
