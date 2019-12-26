@@ -15,7 +15,7 @@ cat index.js >> ../index.js
 
 cd - 
 # DEBUG
-#cat index.js
+# cat index.js && exit
 
 # on linux we have the espruino node package so check if we have node
 nodePath=$(which npm)
@@ -40,7 +40,7 @@ else
 fi
 
 echo '🤔  Try to connect '$1
-espruino -q -p $1 -b 115200 --no-ble -e "console.log(1)"
+espruino -q -p $1 -b 115200 --no-ble -e "reset()"
 
 if [ $? -gt 0 ] ; then
 	echo '🤷‍♂️  Error trying to connect to '$1
